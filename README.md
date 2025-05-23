@@ -31,7 +31,7 @@ A simple and modern Task Manager API built with **FastAPI** and **MongoDB**. Thi
 
 ## 📁 Project Structure
 
-task-manager-api/
+task-manager-app/
 │
 ├── app/
 │ ├── main.py # Entry point
