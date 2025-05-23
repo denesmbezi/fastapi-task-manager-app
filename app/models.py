@@ -5,7 +5,7 @@ from enum import Enum
 
 
 
-class UserRole(str, Enum):
+class TeamRole(str, Enum):
     ADMIN = "admin"
     TEAM_MEMBER = "team_member"
 
@@ -22,4 +22,21 @@ class Task(BaseModel):
     title: str = Field(..., title="Title", max_length=50)
     description: str = Field(..., title="Description of the task", max_length=200)
     status: str = Field(..., title="Status of the task", max_length=20)
+
+class Team(BaseModel):
+    name: str = Field(..., title="Team Name", max_length=50)
+    description: str = Field(..., title="Description of the team", max_length=200)
+    members: List[User] = Field(..., title="Members of the team")
+    tasks: List[Task] = Field(..., title="Tasks assigned to the team")
+    role: TeamRole = Field(..., title="Role of the user in the team")
+    created_at: Optional[str] = Field(None, title="Creation date of the team")
+    updated_at: Optional[str] = Field(None, title="Last update date of the team")
+
+    
+class TeamInDB(Team):
+    id: ObjectId = Field(default_factory=ObjectId, title="ID of the team")
+    created_at: Optional[str] = Field(None, title="Creation date of the team")
+    updated_at: Optional[str] = Field(None, title="Last update date of the team")
+
+
 
