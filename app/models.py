@@ -10,6 +10,14 @@ class TeamRole(str, Enum):
     TEAM_MEMBER = "team_member"
 
 
+class TaskStatus(str, Enum):
+    PENDING = "pending"
+    IN_PROGRESS = "in_progress"
+    COMPLETED = "completed"
+    ON_HOLD = "on_hold"
+    DELETED = "deleted"
+
+
 
 
 class User(BaseModel):
@@ -32,7 +40,7 @@ class Team(BaseModel):
     created_at: Optional[str] = Field(None, title="Creation date of the team")
     updated_at: Optional[str] = Field(None, title="Last update date of the team")
 
-    
+
 class TeamInDB(Team):
     id: ObjectId = Field(default_factory=ObjectId, title="ID of the team")
     created_at: Optional[str] = Field(None, title="Creation date of the team")
