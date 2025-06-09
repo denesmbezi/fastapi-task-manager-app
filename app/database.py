@@ -3,12 +3,11 @@ import os
 from motor.motor_asyncio import AsyncIOMotorClient
 
 
-# load environments from .env file
-load_dotenv()
+MONGO_URI="mongodb://localhost:27017"
+MONGO_DB="task_db"
 
-MONGO_URI = os.getenv("MONGO_URI")
-MONGO_DB = os.getenv("MONGO_DB")
-
+if not MONGO_URI or not MONGO_DB:
+    raise ValueError("MONGO_URI and MONGO_DB must be set in the environment variables.")
 
 class MongoDB:
     def __init__(self):
@@ -20,5 +19,4 @@ class MongoDB:
         await self.client.close()
 
 mongodb = MongoDB()
-
 

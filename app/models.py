@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 from bson import ObjectId
 from enum import Enum
+from datetime import datetime
 
 
 
@@ -29,7 +30,8 @@ class User(BaseModel):
 class Task(BaseModel):
     title: str = Field(..., title="Title", max_length=50)
     description: str = Field(..., title="Description of the task", max_length=200)
-    status: str = Field(..., title="Status of the task", max_length=20)
+    status: TaskStatus = Field(..., title="Status of the task")
+    created_at: Optional[str] = Field(None, title="Creation date of the task")
 
 class Team(BaseModel):
     name: str = Field(..., title="Team Name", max_length=50)
@@ -41,10 +43,7 @@ class Team(BaseModel):
     updated_at: Optional[str] = Field(None, title="Last update date of the team")
 
 
-class TeamInDB(Team):
-    id: ObjectId = Field(default_factory=ObjectId, title="ID of the team")
-    created_at: Optional[str] = Field(None, title="Creation date of the team")
-    updated_at: Optional[str] = Field(None, title="Last update date of the team")
+
 
 
 
